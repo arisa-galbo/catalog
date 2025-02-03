@@ -1,0 +1,8 @@
+<h1>タグ一覧</h1>
+<ul>
+  <% @tags.each do |tag| %>
+    <li>
+      <p><%= tag.name %></p>
+    </li>
+  <% end %>
+</ul>
