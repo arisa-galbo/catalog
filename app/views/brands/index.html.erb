@@ -1,6 +1,6 @@
 <h1>登録ブランド一覧</h1>
 
-<%= link_to "新規ブランド登録", new_brand_path %>
+<%= link_to "新規ブランド登録", new_brand_path if authenticated?%>
 
 <div id="brands">
   <% @brands.each do |brand| %>

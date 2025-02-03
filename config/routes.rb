@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  root "brands#index"
+
   resource :session
   resources :passwords, param: :token
   resources :brands
