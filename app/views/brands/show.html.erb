@@ -5,3 +5,9 @@
  <%= link_to "編集", edit_brand_path(@brand) %>
  <%= button_to "削除", @brand, method: :delete, data: { turbo_confirm: "削除を実行しますか?" } %>
 <% end %>
+<h2>商品</h2>
+<ul>
+ <% @brand.products.each do |product| %>
+    <li><%= link_to product.name, brand_product_path(@brand, product) %></li>
+ <% end %>
+</ul>
