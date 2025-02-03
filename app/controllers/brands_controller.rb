@@ -1,5 +1,5 @@
 class BrandsController < ApplicationController
-  before_action :set_brand, only: [:show, :edit, :update]
+  before_action :set_brand, only: %i[ show edit update destroy ]
   def index
     @brands = Brand.all
   end
@@ -29,6 +29,11 @@ class BrandsController < ApplicationController
     else
       render :edit, status: :unprocessable_entity
     end
+  end
+
+  def destroy
+    @brand.destroy
+    redirect_to brands_path
   end
 
   private
