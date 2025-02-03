@@ -3,3 +3,7 @@
 <p>説明: <%= @product.body %></p>
 <p>生産開始日: <%= @product.production_started_on %></p>
 <p>ブランド名: <%= link_to @brand.name, @brand %></p>
+<% if authenticated? %>
+    <%= link_to "編集", edit_brand_product_path(@brand, @product), class: "btn btn-primary" %>
+    <%= link_to "削除", brand_product_path(@brand, @product), method: :delete, data: { confirm: "本当に削除しますか？" }, class: "btn btn-danger" %>
+<% end %>

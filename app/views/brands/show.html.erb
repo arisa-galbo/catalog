@@ -11,3 +11,6 @@
     <li><%= link_to product.name, brand_product_path(@brand, product) %></li>
  <% end %>
 </ul>
+<% if authenticated? %>
+  <%= link_to "商品を追加", new_brand_product_path(@brand), class: "btn btn-primary" %>
+<% end %>
