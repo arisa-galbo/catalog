@@ -20,6 +20,19 @@ class BrandsController < ApplicationController
     end
   end
 
+  def edit
+    @brand = Brand.find(params[:id])
+  end
+
+  def update
+    @brand = Brand.find(params[:id])
+    if @brand.update(brand_params)
+      redirect_to @brand
+    else
+      render :edit, status: :unprocessable_entity
+    end
+  end
+  
   private
   def brand_params
     params.expect(brand: [ :name ])
