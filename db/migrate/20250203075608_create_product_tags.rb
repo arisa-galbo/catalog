@@ -1,0 +1,11 @@
+class CreateProductTags < ActiveRecord::Migration[8.0]
+  def change
+    create_table :product_tags do |t|
+      t.references :product, null: false, foreign_key: true
+      t.references :tag, null: false, foreign_key: true
+      t.daterange :validity, null: false
+
+      t.timestamps
+    end
+  end
+end
