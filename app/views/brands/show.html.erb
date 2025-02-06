@@ -1,14 +1,19 @@
 <h1><%= @brand.name %></h1>
 
-<%= link_to "ブランド一覧に戻る", brands_path %>
 <% if authenticated? %>
- <%= link_to "編集", edit_brand_path(@brand) %>
- <%= button_to "削除", @brand, method: :delete, data: { turbo_confirm: "削除を実行しますか?" } %>
+  <div>
+    <%= link_to "編集", edit_brand_path(@brand) %>
+    <%= link_to "削除", [ @brand ], data: {
+                    turbo_method: :delete,
+                    turbo_confirm: "ブランドを削除しますか？"
+                    } %>
+  </div>
 <% end %>
+<%= link_to "ブランド一覧に戻る", brands_path %>
 <h2>商品</h2>
 <ul>
- <% @brand.products.each do |product| %>
-    <li><%= link_to product.name, brand_product_path(@brand, product) %></li>
+ <% @products.each do |product| %>
+    <li><%= link_to product.name, product_path(product) %></li>
  <% end %>
 </ul>
 <% if authenticated? %>

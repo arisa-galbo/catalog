@@ -1,0 +1,32 @@
+<h1>商品一覧</h1>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>商品名</th>
+      <th>ブランド</th>
+      <th>価格</th>
+      <% if authenticated? %><th>操作</th><% end %>
+    </tr>
+  </thead>
+  <tbody>
+    <% @products.each do |product| %>
+      <tr>
+        <td><%= link_to product.name, product_path(product) %></td>
+        <td><%= link_to product.brand.name, brand_path(product.brand) if product.brand %></td>
+        <td><%= number_to_currency(product.price) %></td>
+        <% if authenticated? %>
+        <td>
+          <%= link_to "編集", edit_product_path(product), class: "btn btn-warning btn-sm" %>
+          <%= link_to "削除", [ product ], data: {
+                  turbo_method: :delete,
+                  turbo_confirm: "商品を削除しますか？"
+                } %>
+        </td>
+        <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to "ブランド一覧へ", brands_path, class: "btn btn-secondary" %>

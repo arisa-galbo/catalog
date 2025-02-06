@@ -4,8 +4,10 @@ Rails.application.routes.draw do
   resource :session
   resources :passwords, param: :token
   resources :brands do
-    resources :products
+    resources :products, only: [:new, :create]
   end
+  resources :products, except: [:new, :create]
+  
   resources :tags
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 

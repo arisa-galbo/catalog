@@ -6,6 +6,7 @@ class BrandsController < ApplicationController
   end
 
   def show
+    @products = @brand.products
   end
 
   def new
