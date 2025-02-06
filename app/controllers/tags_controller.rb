@@ -6,6 +6,7 @@ class TagsController < ApplicationController
     end
     
     def show
+      @products = @tag.products.includes(:brand)
     end
   
     def new
