@@ -7,7 +7,7 @@
 <h2>登録商品</h2>
 <ul>
   <% @products.each do |product| %>
-    <li><%= link_to product.name, brand_product_path(product.brand, product) %></li>
+    <li><%= link_to product.name, product_path(product) %></li>
   <% end %>
 </ul>
 
