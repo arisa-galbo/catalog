@@ -32,7 +32,7 @@ class ProductsController < ApplicationController
     
     def destroy
         @product.destroy
-    redirect_to brand_products_path(@brand), notice: "商品が削除されました！"
+        redirect_to brand_path(@brand), notice: "商品が削除されました！"
       end
 
     private
