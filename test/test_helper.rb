@@ -11,5 +11,18 @@ module ActiveSupport
     fixtures :all
 
     # Add more helper methods to be used by all tests here...
+    module AuthenticationTestHelper
+      def log_in_as(user,password)
+        post session_path, params: { email_address: user.email_address, password: password }
+      end
+    
+      def log_out
+        delete session_path(:current)
+      end
+    end
   end
+end
+
+class ActionDispatch::IntegrationTest
+  include ActiveSupport::TestCase::AuthenticationTestHelper
 end
