@@ -1,14 +1,7 @@
 <%= form_with model: @tag do |form| %>
-  <% if @tag.errors.any? %>
-    <div class="error-messages">
-      <h2><%= pluralize(@tag.errors.count, "エラー") %> が発生しました:</h2>
-      <ul>
-        <% @tag.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
+  <% @tag.errors.full_messages_for(:name).each do |message| %>
+      <div class="error-message text-danger"><%= message %></div>
+    <% end %>
 
   <div>
     <%= form.label :name, "タグ名" %>

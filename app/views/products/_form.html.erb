@@ -1,14 +1,7 @@
 <%= form_with model: [@brand, @product] do |form| %>
-  <% if @product.errors.any? %>
-    <div class="error-messages">
-      <h2><%= pluralize(@product.errors.count, "エラー") %> が発生しました:</h2>
-      <ul>
-        <% @product.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
+  <% @product.errors.full_messages_for(:name).each do |message| %>
+      <div class="error-message text-danger"><%= message %></div>
+    <% end %>
 
   <div>
     <%= form.label :name, "商品名" %>

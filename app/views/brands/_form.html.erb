@@ -1,4 +1,7 @@
 <%= form_with model: brand do |form| %>
+  <% brand.errors.full_messages_for(:name).each do |message| %>
+      <div class="error-message text-danger"><%= message %></div>
+  <% end %>
   <div>
     <%= form.label :name %>
     <%= form.text_field :name %>

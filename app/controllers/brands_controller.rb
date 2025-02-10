@@ -16,6 +16,7 @@ class BrandsController < ApplicationController
   def create
     @brand = Brand.new(brand_params)
     if @brand.save
+      flash[:notice]= "ブランド情報を登録しました！"
       redirect_to @brand
     else
       render :new, status: :unprocessable_entity
@@ -27,6 +28,7 @@ class BrandsController < ApplicationController
 
   def update
     if @brand.update(brand_params)
+      flash[:notice]= "ブランド情報を更新しました！"
       redirect_to @brand
     else
       render :edit, status: :unprocessable_entity
@@ -35,6 +37,7 @@ class BrandsController < ApplicationController
 
   def destroy
     @brand.destroy
+    flash[:notice]= "ブランド情報を削除しました！"
     redirect_to brands_path
   end
 

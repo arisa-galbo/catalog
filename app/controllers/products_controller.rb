@@ -18,7 +18,8 @@ class ProductsController < ApplicationController
     def create
         @product = @brand.products.new(product_params)
         if @product.save
-            redirect_to product_path(@product), notice: "商品が登録されました！"
+          flash[:notice]= "商品情報を登録しました！"
+          redirect_to product_path(@product)
         else
             render :new, status: :unprocessable_entity
         end
@@ -29,7 +30,8 @@ class ProductsController < ApplicationController
   
     def update
       if @product.update(product_params)
-        redirect_to product_path(@product), notice: "商品が更新されました！"
+        flash[:notice]= "商品情報を更新しました！"
+        redirect_to product_path(@product)
       else
         render :edit, status: :unprocessable_entity
       end
@@ -37,7 +39,8 @@ class ProductsController < ApplicationController
     
     def destroy
         @product.destroy
-        redirect_to products_path, notice: "商品が削除されました！"
+        flash[:notice]= "商品情報を削除しました！"
+        redirect_to products_path
       end
 
     private
