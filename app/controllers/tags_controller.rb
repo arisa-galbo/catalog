@@ -16,7 +16,7 @@ class TagsController < ApplicationController
     def create
       @tag = Tag.new(tag_params)
       if @tag.save
-        redirect_to tags_path, notice: "タグを作成しました！"
+        redirect_to tag_path(@tag), notice: "タグを作成しました！"
       else
         render :new, status: :unprocessable_entity
       end
@@ -27,7 +27,7 @@ class TagsController < ApplicationController
   
     def update
       if @tag.update(tag_params)
-        redirect_to tags_path, notice: "タグを更新しました！"
+        redirect_to tag_path(@tag), notice: "タグを更新しました！"
       else
         render :edit, status: :unprocessable_entity
       end
