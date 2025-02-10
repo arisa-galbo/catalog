@@ -3,9 +3,9 @@
 one:
   product: one
   tag: one
-  validity: 
+  validity: "[2024-12-25, 2025-10-10)"
 
 two:
   product: two
   tag: two
-  validity: 
+  validity: "[2025-2-10,)"
