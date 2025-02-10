@@ -1,0 +1,30 @@
+<h2>タグ設定</h2>
+<%= form_with model: [@product, @product_tag] do |form| %>
+  <div>
+    <%= form.label :tag_id, "タグ" %>
+    <%= form.collection_select :tag_id, Tag.all, :id, :name, prompt: "タグを選択", class: "form-control" %>
+     <% @product_tag.errors.full_messages_for(:tag_id).each do |message| %>
+      <div><%= message %></div>
+    <% end %>
+  </div>
+  <div>
+    <%= form.label :valid_from, "開始日" %>
+    <%= form.date_field :valid_from %>
+    <% @product_tag.errors.full_messages_for(:valid_from).each do |message| %>
+      <div><%= message %></div>
+    <% end %>
+
+  </div>
+  <div>
+    <%= form.label :valid_to, "終了日" %>
+    <%= form.date_field :valid_to %>
+    <% @product_tag.errors.full_messages_for(:valid_to).each do |message| %>
+      <div><%= message %></div>
+    <% end %>
+
+  </div>
+  <p>※終了日は未入力の場合、無期限となります。</p>
+  <p>※開始日を含み、終了日未満が有効期間となります。</p>
+
+  <%= form.submit "保存", class: "btn btn-primary" %>
+<% end %>

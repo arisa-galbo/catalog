@@ -6,8 +6,10 @@ Rails.application.routes.draw do
   resources :brands do
     resources :products, only: [:new, :create]
   end
-  resources :products, except: [:new, :create]
-  
+  resources :products, except: [:new, :create] do
+    resources :product_tags, except: [:index, :show]
+  end
+
   resources :tags
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 

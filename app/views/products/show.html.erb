@@ -1,3 +1,8 @@
+<% if flash[:notice] %>
+  <div class="alert alert-success">
+    <%= flash[:notice] %>
+  </div>
+<% end %>
 <h1><%= @product.name %></h1>
 <p>価格: <%= @product.price %> 円</p>
 <p>説明: <%= @product.body %></p>
@@ -9,4 +14,19 @@
                   turbo_method: :delete,
                   turbo_confirm: "商品を削除しますか？"
                 } %>
+<% end %>
+<p>登録タグ:</p>
+  <% @product.product_tags.each do |product_tag| %>
+    <%= link_to product_tag.tag.name, product_tag.tag %>
+    <% if authenticated? %>
+      <%= link_to "編集", edit_product_product_tag_path(@product, product_tag), class: "btn btn-warning btn-sm" %>
+      <%= link_to "削除", [ @product, product_tag ], data: {
+                    turbo_method: :delete,
+                    turbo_confirm: "タグを削除しますか？"
+                  } %>
+    <% end %>
+  <% end %>
+</p>
+<% if authenticated? %>
+  <%= link_to "新規タグ追加", new_product_product_tag_path(@product), class: "btn btn-primary"%>
 <% end %>
