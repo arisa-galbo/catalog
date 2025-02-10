@@ -47,6 +47,6 @@ class BrandsController < ApplicationController
   end
   
   def brand_params
-    params.expect(brand: [ :name ])
+    params.require(:brand).permit(:name)
   end
 end
