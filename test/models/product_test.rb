@@ -17,7 +17,17 @@ class ProductTest < ActiveSupport::TestCase
 
   test "価格が負の値の場合は保存不可" do
     @product.price = -100.0
-    assert @product.save, "価格なしの商品が保存できなかった"
+    assert_not @product.save, "価格が負の商品が保存されてしまった"
+  end
+
+  test "価格が0の場合は保存不可" do
+    @product.price = 0
+    assert_not @product.save, "価格が0の商品が保存されてしまった"
+  end
+
+  test "価格がnullの場合は保存可能" do
+    @product.price = nil
+    assert @product.save, "価格がnullの商品が保存できなかった"
   end
 
   test "本文なしの商品は保存可能" do
