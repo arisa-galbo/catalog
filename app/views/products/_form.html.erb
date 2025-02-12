@@ -8,16 +8,25 @@
     <%= form.text_field :name %>
   </div>
 
+  <% @product.errors.full_messages_for(:price).each do |message| %>
+      <div class="error-message text-danger"><%= message %></div>
+  <% end %>
   <div>
     <%= form.label :price, "価格" %>
     <%= form.number_field :price, step: 0.01 %>
   </div>
 
+  <% @product.errors.full_messages_for(:body).each do |message| %>
+      <div class="error-message text-danger"><%= message %></div>
+  <% end %>
   <div>
     <%= form.label :body, "商品説明" %>
     <%= form.text_area :body, rows: 5 %>
   </div>
 
+  <% @product.errors.full_messages_for(:production_started_on).each do |message| %>
+      <div class="error-message text-danger"><%= message %></div>
+  <% end %>
   <div>
     <%= form.label :production_started_on, "生産開始日" %>
     <%= form.date_field :production_started_on %>
