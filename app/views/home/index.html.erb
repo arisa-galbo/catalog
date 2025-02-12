@@ -1,0 +1,10 @@
+<h1>カタログ</h1>
+
+<p>このサイトでは取り扱い商品を<% if authenticated? %>登録・<% end %>検索できます。</p>
+
+<ul>
+  <li><%= link_to "ブランド一覧", brands_path %></li>
+  <li><%= link_to "商品一覧", products_path %></li>
+  <li><%= link_to "タグ一覧", tags_path %></li>
+</ul>
+

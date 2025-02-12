@@ -2,11 +2,11 @@ require "test_helper"
 
 class RoutesTest < ActionDispatch::IntegrationTest
     test "ルートページへのルーティング" do
-        assert_routing "/", controller: "brands", action: "index"
+        assert_routing "/", controller: "home", action: "index"
     end
 
     test "ブランドのルーティング(index, show, new, create, edit, update, destroy)" do
-        assert_routing "/", controller: "brands", action: "index"  #ルートページを変更した場合にはこちらも変更する
+        assert_routing "/brands", controller: "brands", action: "index"
         assert_routing "/brands/1", controller: "brands", action: "show", id: "1"
         assert_routing "/brands/new", controller: "brands", action: "new"
         assert_routing({ method: :post, path: "/brands" }, { controller: "brands", action: "create" })
