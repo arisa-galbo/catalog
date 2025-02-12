@@ -5,6 +5,10 @@ class ProductsControllerTest < ActionDispatch::IntegrationTest
     @brand = brands(:one)
     @product = products(:one)
     @user = users(:one)
+    @valid_csv = fixture_file_upload("valid_products.csv", "text/csv")
+    @invalid_csv = fixture_file_upload("invalid_products.csv", "text/csv")
+    @empty_csv = fixture_file_upload("empty.csv", "text/csv")
+    @missing_column_csv = fixture_file_upload("missing_column.csv", "text/csv")
   end
 
   test "商品一覧ページにアクセス可能" do
@@ -100,4 +104,59 @@ class ProductsControllerTest < ActionDispatch::IntegrationTest
     get product_url(Product.last.id + 1)
     assert_response :not_found
   end
+
+  test "認証ユーザはアップロードページにアクセス可能" do
+    log_in_as(@user, "password")
+    get upload_products_path
+    assert_response :success
+  end
+
+  test "未認証ユーザはアップロードページにアクセス不可" do
+    get upload_products_path
+    assert_redirected_to new_session_url
+  end
+
+  test "有効なCSVをアップロードすると商品が登録される" do
+    log_in_as(@user, "password")
+    assert_difference("Product.count", 4) do
+      post process_upload_products_path, params: { file: @valid_csv }
+    end
+    assert_redirected_to products_path
+    assert_equal "商品が 4 件登録されました", flash[:notice]
+  end
+
+  test "無効な値の入ったCSVをアップロードするとエラーが発生する" do
+    log_in_as(@user, "password")
+    assert_no_difference("Product.count") do
+      post process_upload_products_path, params: { file: @invalid_csv }
+    end
+    assert_response :unprocessable_entity
+    assert_match "エラー:", flash[:alert]
+  end
+
+  test "空のCSVをアップロードするとエラーが発生する" do
+    log_in_as(@user, "password")
+    assert_no_difference("Product.count") do
+      post process_upload_products_path, params: { file: @empty_csv}
+    end
+    assert_response :unprocessable_entity
+    assert_match "エラー:", flash[:alert]
+  end
+
+  test "カラムの不足したCSVをアップロードするとエラーが発生する" do
+    log_in_as(@user, "password")
+    assert_no_difference("Product.count") do
+      post process_upload_products_path, params: { file: @missing_column_csv }
+    end
+    assert_response :unprocessable_entity
+    assert_match "エラー:", flash[:alert]
+  end
+
+  test "CSVがアップロードされなかった場合エラーになる" do
+    log_in_as(@user, "password")
+    post process_upload_products_path, params: { file: nil }
+    assert_redirected_to upload_products_path
+    assert_equal "CSVファイルを選択してください", flash[:alert]
+  end
+
 end

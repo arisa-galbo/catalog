@@ -1,0 +1,6 @@
+name,price,body,production_started_on,brand
+,10.0,No name product,2025-01-01,Test Brand 1
+Test3,200.0,Unknown brand,2025-01-01,Nonexistent Brand
+Test4,-100.0,this is a test,2025-01-01,Test Brand 1
+Test5,100,invalid date,2025/2/30,Test Brand 1
+Test6,hello,invalid price, ,Test Brand 2

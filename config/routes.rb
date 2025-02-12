@@ -7,6 +7,10 @@ Rails.application.routes.draw do
   end
   resources :products, except: [:new, :create] do
     resources :product_tags, except: [:index, :show]
+    collection do
+      get "upload"
+      post "process_upload"
+    end
   end
 
   resources :tags

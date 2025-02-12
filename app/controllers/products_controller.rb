@@ -41,7 +41,32 @@ class ProductsController < ApplicationController
         @product.destroy
         flash[:notice]= "商品情報を削除しました！"
         redirect_to products_path
+    end
+
+    def upload
+    end
+
+    def process_upload
+      if params[:file].blank?
+        redirect_to upload_products_path, alert: "CSVファイルを選択してください"
+        return
       end
+  
+      csv_data = params[:file].read
+      service = ProductImporterService.new(csv_data)
+      result = service.call
+  
+      if result[:error_count] > 0
+        flash[:alert] = "エラー: #{result[:errors].join(', ')}"
+        render :upload, status: :unprocessable_entity
+      elsif result[:success_count] == 0
+        flash[:alert] = "エラー: 追加できるレコードがありません"
+        render :upload, status: :unprocessable_entity
+      else
+        flash[:notice] = "商品が #{result[:success_count]} 件登録されました"
+        redirect_to products_path
+      end
+    end
 
     private
   
