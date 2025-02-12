@@ -35,6 +35,11 @@ class ProductTest < ActiveSupport::TestCase
     assert_not @product.save, "ブランドなしの商品が保存されてしまった"
   end
 
+  test "存在しないブランドの商品は保存不可" do
+    @product.brand_id = 99999
+    assert_not @product.save, "DBに存在しないブランドの商品が保存されてしまった"
+  end
+
   test "商品にブランドが登録できている" do
     @product.save
     assert_equal @brand, @product.brand, "商品にブランドが正しく保存されていない"
