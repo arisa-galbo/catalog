@@ -1,1 +1,30 @@
-<p>アップロード画面</p>
+<h1>CSVファイルをアップロード</h1>
+<% if flash[:alert] %>
+  <div class="alert alert-danger"><%= flash[:alert] %></div>
+<% end %>
+<% if @errors.present? %>
+  <% if @file_title.present? %>
+    <div class="alert alert-info">
+        前回選択されたファイル: <strong><%= @file_title %></strong>
+    </div>
+  <% end %>
+  <div class="alert alert-danger">
+  <input type="file" id="csv_file" name="file" accept=".csv" />
+    <h4>エラーが発生しました:</h4>
+    <ul>
+      <% @errors.each do |error| %>
+        <li><%= error %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+<%= form_with url: process_upload_products_path, multipart: true, method: :post do |form| %>
+  <div>
+    <%= form.label :file, "CSVファイル" %>
+    <%= form.file_field :file, accept: ".csv" %>
+  </div>
+  
+  <div>
+    <%= form.submit "アップロード", class: "btn btn-primary" %>
+  </div>
+<% end %>

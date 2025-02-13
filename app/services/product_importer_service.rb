@@ -19,7 +19,7 @@ class ProductImporterService
             next
         end
         if brand.nil?
-            errors << "#{row['name']} のブランドが存在しません"
+            errors << "#{row['name']} のブランド#{row['brand']}が存在しません"
             error_count += 1
         next
         end

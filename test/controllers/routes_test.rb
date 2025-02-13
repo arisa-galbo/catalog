@@ -20,8 +20,10 @@ class RoutesTest < ActionDispatch::IntegrationTest
         assert_routing({ method: :post, path: "/brands/1/products" }, { controller: "products", action: "create", brand_id: "1" })
     end
 
-    test "商品の登録以外のルーティング(index, show, edit, update, destroy)" do
+    test "商品の登録以外のルーティング(index, show, edit, update, destroy,upload)" do
         assert_routing "/products", controller: "products", action: "index"
+        assert_routing "/products/upload", controller: "products", action: "upload"
+        assert_routing({ method: :post, path: "/products/process_upload" }, { controller: "products", action: "process_upload" })
         assert_routing "/products/1", controller: "products", action: "show", id: "1"
         assert_routing "/products/1/edit", controller: "products", action: "edit", id: "1"
         assert_routing({ method: :patch, path: "/products/1" }, { controller: "products", action: "update", id: "1" })
