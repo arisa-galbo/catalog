@@ -76,4 +76,28 @@ class ProductTest < ActiveSupport::TestCase
     end
   end
 
+  test "有効な画像URLを保存可能" do
+    @product.image_url = "https://example.com/image.jpg"
+    assert @product.valid?, "有効なURLがバリデーションエラーとなった"
+  end
+
+
+  test "無効な画像URLを保存不可" do
+    invalid_urls = [
+      "invalid-url",
+      "ftp://example.com/image.jpg"
+    ]
+
+    invalid_urls.each do |url|
+      @product.image_url = url
+      assert_not @product.valid?, "無効なURLがバリデーションを通過した: #{url}"
+      assert_includes @product.errors[:image_url], "は有効なURLを入力してください"
+    end
+  end
+
+  test "画像URLが空でも保存可能" do
+    @product.image_url = ""
+    assert @product.valid?, "空のURLがバリデーションエラーとなった"
+  end
+
 end
