@@ -41,7 +41,7 @@ class ProductImporterServiceTest < ActiveSupport::TestCase
             result = service.call
             assert_equal 1, result[:success_count], "有効な商品が1件登録されるべき"
             expected_errors = [
-                "Test3 のブランドが存在しません",
+                "Test3 のブランドNonexistent Brandが存在しません",
                 "商品名がありません",
                 "Test4 の価格が無効です",
                 "Test5 の日付が不正です",
