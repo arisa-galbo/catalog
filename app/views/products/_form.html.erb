@@ -32,6 +32,14 @@
     <%= form.date_field :production_started_on %>
   </div>
 
+  <% @product.errors.full_messages_for(:image_url).each do |message| %>
+    <div class="error-message text-danger"><%= message %></div>
+  <% end %>
+  <div>
+    <%= form.label :image_url, "画像URL" %>
+    <%= form.text_field :image_url, placeholder: "https://example.com/image.jpg" %>
+  </div>
+
   <div>
     <%= form.submit @product.new_record? ? "商品を登録" : "商品を更新" %>
   </div>

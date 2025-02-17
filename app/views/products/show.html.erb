@@ -1,4 +1,7 @@
 <h1><%= @product.name %></h1>
+<% if @product.image_url.present? %>
+  <img src="<%= @product.image_url %>" height=200 width="auto">
+<% end %>
 <p>価格: <%= @product.price %> 円</p>
 <p>説明: <%= @product.body %></p>
 <p>生産開始日: <%= @product.production_started_on %></p>
