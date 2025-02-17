@@ -110,6 +110,19 @@
     background-color: #c0392b;
   }
   
+  .btn-primary {
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+    color: white;
+    background-color: #3498db;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .btn-primary:hover {
+    background-color: #2980b9;
+  }
+
   .btn-secondary {
     background-color: #7f8c8d;
     color: white;
@@ -232,4 +245,70 @@ text-align: center;
 .table__link:hover {
     color: #2980b9;
     text-decoration: underline;
+}
+
+.record_btn {
+    text-align: center;
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+    color: #34495e;
+    background-color: #dfe8d7;
+    border-radius: 30px;
+    width: 120px;
+    height: 25px;
+    transition: background-color 0.3s ease;
+    margin-bottom: 5px;
+}
+
+.tag {
+    text-decoration: none;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.8rem;
+    color: white;
+    border-radius: 3px;
+    background-color: #a3a3a3;
+    display: inline-block;
+    margin-bottom: 5px;
+}
+
+.productpage-top {
+    padding: 2rem 0;
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.productpage-right {
+    width: 50%;
+}
+
+.productpage-brand {
+    text-decoration: none;
+    color: black;
+    transition: color 0.3s ease;
+}
+
+.productpage-brand:hover {
+    color: #608f75;
+    text-decoration: underline;
+}
+
+.productpage-left {
+    width: 50%;
+    display: flex;
+    justify-content: flex-end;
+}
+.productpage-left img {
+    object-fit: cover;
+    padding-right: 10px;
+}
+
+.productpage-bottom{
+    text-align: center;
+}
+
+.record {
+    margin-top: 5px;
 }
