@@ -8,3 +8,70 @@
  *
  * Consider organizing styles into separate files for maintainability.
  */
+ body {
+    font-family: Helvetica, sans-serif;
+    padding: 0;
+    margin: 0;
+  }
+  
+  nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4rem;
+    background-color: rgb(169, 186, 169);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 1000;
+    }
+  
+    nav a, nav button {
+        color: white;
+        text-decoration: none;
+        background: none;
+        border: none;
+        cursor: pointer;
+        padding: 0.5rem 1rem;
+        transition: background-color 0.3s;
+        font-size: 1rem;
+      }
+
+      nav a:hover, nav button:hover {
+        background-color: rgba(255, 255, 255, 0.2);
+        border-radius: 5px;
+      }
+  
+  main {
+    padding: 4rem 2rem;
+    margin: 0 auto;
+    max-width: 1024px;
+    box-sizing: border-box;
+  }
+
+.nav__home {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 1.5rem;
+  }
+  
+.nav__actions {
+    margin-left: auto;
+  }
+  
+  .notice {
+    margin: auto 1rem;
+    padding: 1rem;
+    max-width: 800px;
+    background-color: #eee9ce;
+    color: #433838;
+    border-radius: 5px;
+    text-align: center;
+  }
+
+  h1 {
+    font-size: 1.5rem;
+    margin: 0.5rem 0;
+  }

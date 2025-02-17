@@ -24,12 +24,14 @@
 
   <body>
     <nav>
-      <%= link_to "Home", root_path %>
-      <%= button_to "Log out", session_path, method: :delete if authenticated? %>
-      <%= link_to "Login", new_session_path unless authenticated? %>
+      <%= link_to "Ton Parfum", root_path, class: "nav__home"%>
+      <div class="nav__actions">
+        <%= button_to "Logout", session_path, method: :delete, class: "nav__button nav__button--logout" if authenticated?%>
+        <%= link_to "Login", new_session_path, class:"nav__button nav__button--login" unless authenticated? %>
+      </div>
     </nav>
     <% if flash[:notice] %>
-      <div>
+      <div class="notice">
         <%= flash[:notice] %>
       </div>
     <% end %>
