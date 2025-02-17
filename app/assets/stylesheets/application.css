@@ -62,9 +62,9 @@
   }
   
   .notice {
-    margin: auto 1rem;
+    margin: 0 auto;
     padding: 1rem;
-    max-width: 800px;
+    max-width: 500px;
     background-color: #eee9ce;
     color: #433838;
     border-radius: 5px;

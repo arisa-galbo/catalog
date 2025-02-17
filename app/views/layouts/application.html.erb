@@ -30,12 +30,12 @@
         <%= link_to "Login", new_session_path, class:"nav__button nav__button--login" unless authenticated? %>
       </div>
     </nav>
-    <% if flash[:notice] %>
-      <div class="notice">
-        <%= flash[:notice] %>
-      </div>
-    <% end %>
     <main>
+     <% if flash[:notice] %>
+        <div class="notice">
+          <%= flash[:notice] %>
+        </div>
+      <% end %>
       <%= yield %>
     </main>
   </body>
