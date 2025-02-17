@@ -1,10 +1,21 @@
-<h1>カタログ</h1>
+<h1 class="home__title title">商品カタログ</h1>
+<p class="home__description">
+  このサイトでは取り扱い商品を<% if authenticated? %>登録・<% end %>検索できます。
+</p>
 
-<p>このサイトでは取り扱い商品を<% if authenticated? %>登録・<% end %>検索できます。</p>
+<section class="home__links">
+  <a href="<%= brands_path %>" class="home__card">
+    <h2>ブランド一覧</h2>
+    <p>登録済みのブランドとその商品を確認できます。</p>
+  </a>
 
-<ul>
-  <li><%= link_to "ブランド一覧", brands_path %></li>
-  <li><%= link_to "商品一覧", products_path %></li>
-  <li><%= link_to "タグ一覧", tags_path %></li>
-</ul>
+  <a href="<%= products_path %>" class="home__card">
+    <h2>商品一覧</h2>
+    <p>登録された全ての商品を確認できます。</p>
+  </a>
 
+  <a href="<%= tags_path %>" class="home__card">
+    <h2>タグ一覧</h2>
+    <p>商品に関連するタグとその商品を確認できます。</p>
+  </a>
+</section>
