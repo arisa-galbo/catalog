@@ -42,7 +42,7 @@ class ProductsControllerTest < ActionDispatch::IntegrationTest
   test "認証ユーザーは商品を作成可能" do
     log_in_as(@user, "password")
     assert_difference("Product.count", 1) do
-      post brand_products_url(@brand), params: { product: { name: "New Product", price: 1000, body: "説明", production_started_on: Date.today } }
+      post brand_products_url(@brand), params: { product: { name: "New Product", price: 1000, body: "説明", production_started_on: Date.today ,image_url: "https://example.com/image.jpg" } }
     end
     assert_redirected_to product_url(Product.last)
   end
