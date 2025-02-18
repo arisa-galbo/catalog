@@ -1,0 +1,3 @@
+<p>フロントログイン用テストページ</p>
+<%= button_to "Logout", admin_session_path, method: :delete, class: "nav__button nav__button--logout" if admin_authenticated?%>
+<%= link_to "Login", new_admin_session_path, class:"nav__button nav__button--login" unless admin_authenticated? %>

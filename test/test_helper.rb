@@ -20,9 +20,19 @@ module ActiveSupport
         delete session_path(:current)
       end
     end
+    module AdminAuthenticationTestHelper
+      def log_in_as_admin(admin,password)
+        post admin_session_path, params: { email_address: admin.email_address, password: password }
+      end
+    
+      def log_out_admin
+        delete admin_session_path(:current)
+      end
+    end
   end
 end
 
 class ActionDispatch::IntegrationTest
   include ActiveSupport::TestCase::AuthenticationTestHelper
+  include ActiveSupport::TestCase::AdminAuthenticationTestHelper
 end

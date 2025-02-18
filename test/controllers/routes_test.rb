@@ -40,12 +40,24 @@ class RoutesTest < ActionDispatch::IntegrationTest
 
     test "タグのルーティング(index, show, new, create, edit, update, destroy)" do
         assert_routing "/tags", controller: "tags", action: "index"
-    assert_routing "/tags/1", controller: "tags", action: "show", id: "1"
-    assert_routing "/tags/new", controller: "tags", action: "new"
-    assert_routing({ method: :post, path: "/tags" }, { controller: "tags", action: "create" })
-    assert_routing "/tags/1/edit", controller: "tags", action: "edit", id: "1"
-    assert_routing({ method: :patch, path: "/tags/1" }, { controller: "tags", action: "update", id: "1" })
-    assert_routing({ method: :delete, path: "/tags/1" }, { controller: "tags", action: "destroy", id: "1" })
+        assert_routing "/tags/1", controller: "tags", action: "show", id: "1"
+        assert_routing "/tags/new", controller: "tags", action: "new"
+        assert_routing({ method: :post, path: "/tags" }, { controller: "tags", action: "create" })
+        assert_routing "/tags/1/edit", controller: "tags", action: "edit", id: "1"
+        assert_routing({ method: :patch, path: "/tags/1" }, { controller: "tags", action: "update", id: "1" })
+        assert_routing({ method: :delete, path: "/tags/1" }, { controller: "tags", action: "destroy", id: "1" })
+    end
+
+    test "adminセッションのルーティング(new, create, destroy)" do
+        assert_routing "/admin_session/new", controller: "admin_sessions", action: "new"
+        assert_routing({ method: :post, path: "/admin_session" }, { controller: "admin_sessions", action: "create" })
+        assert_routing({ method: :delete, path: "/admin_session" }, { controller: "admin_sessions", action: "destroy" })
+    end
+
+    test "userセッションのルーティング(new, create, destroy)" do
+        assert_routing "/session/new", controller: "sessions", action: "new"
+        assert_routing({ method: :post, path: "/session" }, { controller: "sessions", action: "create" })
+        assert_routing({ method: :delete, path: "/session" }, { controller: "sessions", action: "destroy" })
     end
 end
 

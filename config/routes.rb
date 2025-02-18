@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   root "home#index"
   resource :session
+  resource :admin_session
   resources :passwords, param: :token
   resources :brands do
     resources :products, only: [:new, :create]
