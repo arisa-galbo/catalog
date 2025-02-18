@@ -10,9 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_02_18_025555) do
+ActiveRecord::Schema[8.0].define(version: 2025_02_18_032247) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
+
+  create_table "admin_sessions", force: :cascade do |t|
+    t.bigint "admin_id", null: false
+    t.string "ip_address"
+    t.string "user_agent"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["admin_id"], name: "index_admin_sessions_on_admin_id"
+  end
 
   create_table "admins", force: :cascade do |t|
     t.string "email_address", null: false
@@ -73,6 +82,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_02_18_025555) do
     t.index ["email_address"], name: "index_users_on_email_address", unique: true
   end
 
+  add_foreign_key "admin_sessions", "admins"
   add_foreign_key "product_tags", "products"
   add_foreign_key "product_tags", "tags"
   add_foreign_key "products", "brands"
