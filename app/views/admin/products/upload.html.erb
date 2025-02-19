@@ -18,7 +18,7 @@
     </ul>
   </div>
 <% end %>
-<%= form_with url: process_upload_products_path, multipart: true, method: :post do |form| %>
+<%= form_with url: process_upload_admin_products_path, multipart: true, method: :post do |form| %>
   <div>
     <%= form.label :file, "CSVファイル" %>
     <%= form.file_field :file, accept: ".csv" %>

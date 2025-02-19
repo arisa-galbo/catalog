@@ -1,32 +1,4 @@
 <h1 class="title">商品一覧</h1>
- <% if authenticated? %>
-<table class="table">
-  <thead class="table__head">
-    <tr class="table__row">
-      <th class="table__header">商品名</th>
-      <th class="table__header">ブランド</th>
-      <th class="table__header">価格</th>
-      <th class="table__header">操作</th>
-    </tr>
-  </thead>
-  <tbody class="table__body">
-    <% @products.each do |product| %>
-      <tr class="table__row">
-        <td class="table__cell"><%= link_to product.name, product_path(product), class: "table__link"  %></td>
-        <td class="table__cell"><%= link_to product.brand.name, brand_path(product.brand), class: "table__link"  if product.brand %></td>
-        <td class="table__cell"><%= number_to_currency(product.price) %></td>
-        <td class="table__actions">
-          <%= link_to "編集", edit_product_path(product), class: "btn btn-warning btn-sm" %>
-          <%= link_to "削除", [ product ], data: {
-                  turbo_method: :delete,
-                  turbo_confirm: "商品を削除しますか？"
-                },class: "btn btn-danger btn-sm" %>
-        </td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-<% else %>
   <section class="grid">
     <% @products.each do |product| %>
       <div class="card product__card">
@@ -42,5 +14,4 @@
       </div>
     <% end %>
   </section>
-<% end %>
 <%= link_to "ブランド一覧へ", brands_path, class: "btn btn-secondary" %>

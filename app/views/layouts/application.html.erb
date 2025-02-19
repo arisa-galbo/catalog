@@ -25,10 +25,6 @@
   <body>
     <nav>
       <%= link_to "Ton Parfum", root_path, class: "nav__home"%>
-      <div class="nav__actions">
-        <%= button_to "Logout", session_path, method: :delete, class: "nav__button nav__button--logout" if authenticated?%>
-        <%= link_to "Login", new_session_path, class:"nav__button nav__button--login" unless authenticated? %>
-      </div>
     </nav>
     <main>
      <% if flash[:notice] %>

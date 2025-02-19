@@ -1,5 +1,5 @@
 <h2>タグ設定</h2>
-<%= form_with model: [@product, @product_tag] do |form| %>
+<%= form_with model: [:admin,@product, @product_tag] do |form| %>
   <div>
     <%= form.label :tag_id, "タグ" %>
     <%= form.collection_select :tag_id, Tag.all, :id, :name, prompt: "タグを選択", class: "form-control" %>

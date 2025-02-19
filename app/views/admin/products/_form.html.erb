@@ -1,4 +1,4 @@
-<%= form_with model: [@brand, @product] do |form| %>
+<%= form_with model: [:admin,@brand, @product] do |form| %>
   <% @product.errors.full_messages_for(:name).each do |message| %>
       <div class="error-message text-danger"><%= message %></div>
     <% end %>

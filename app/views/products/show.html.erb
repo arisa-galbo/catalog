@@ -9,13 +9,6 @@
     <p><%= link_to @brand.name, @brand, class: "productpage-brand" %></p>
     <% @product.product_tags.each do |product_tag| %>
       <%= link_to product_tag.tag.name, product_tag.tag ,class: "tag"%>
-      <% if authenticated? %>
-        <%= link_to "編集", edit_product_product_tag_path(@product, product_tag), class: "btn btn-warning btn-sm" %>
-        <%= link_to "削除", [ @product, product_tag ], data: {
-                      turbo_method: :delete,
-                      turbo_confirm: "タグを削除しますか？"
-                    },class: "btn btn-danger btn-sm" %>
-      <% end %>
     <% end %>
     <div class="record">
       <div class="record_btn">欲しい</div>
@@ -28,15 +21,4 @@
 <p>説明: <%= @product.body %></p>
 <p>生産開始日: <%= @product.production_started_on %></p>
 <p>価格: <%= @product.price %> 円</p>
-<% if authenticated? %>
-  <%= link_to "新規タグ追加", new_product_product_tag_path(@product), class: "btn btn-primary"%>
-<% end %>
-
-<% if authenticated? %>
-    <%= link_to "編集", edit_product_path(@product), class: "btn btn-warning btn-sm" %>
-    <%= link_to "削除", [ @product ], data: {
-                  turbo_method: :delete,
-                  turbo_confirm: "商品を削除しますか？"
-                } ,class: "btn btn-danger btn-sm"%>
-<% end %>
 </div>

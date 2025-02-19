@@ -1,9 +1,11 @@
 <h1>登録ブランド一覧</h1>
 
+<%= link_to "新規ブランド登録", new_admin_brand_path %>
+
 <div id="brands">
   <% @brands.each do |brand| %>
     <div>
-      <%= link_to brand.name, brand %>
+      <%= link_to brand.name, admin_brand_path(brand) %>
     </div>
   <% end %>
 </div>

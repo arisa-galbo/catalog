@@ -1,0 +1,12 @@
+<h1><%= @tag.name %></h1>
+    <%= link_to "編集", edit_admin_tag_path(@tag), class: "btn btn-warning" %>
+    <%= button_to "削除", @tag, method: :delete, data: { turbo_confirm: "削除を実行しますか?" } %>
+
+<h2>登録商品</h2>
+<ul>
+  <% @products.each do |product| %>
+    <li><%= link_to product.name, admin_product_path(product) %></li>
+  <% end %>
+</ul>
+
+<%= link_to "タグ一覧へ戻る", admin_tags_path, class: "btn btn-secondary" %>
