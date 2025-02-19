@@ -3,18 +3,26 @@ Rails.application.routes.draw do
   resource :session
   resource :admin_session
   resources :passwords, param: :token
-  resources :brands do
-    resources :products, only: [:new, :create]
-  end
-  resources :products, except: [:new, :create] do
-    resources :product_tags, except: [:index, :show]
-    collection do
-      get "upload"
-      post "process_upload"
+  # 【Admin用】管理者用の管理パネル
+  namespace :admin do
+    resources :brands do
+      resources :products, only: [:new, :create]
     end
+
+    resources :products, except: [:new, :create] do
+      resources :product_tags, except: [:index, :show]
+      collection do
+        get "upload"
+        post "process_upload"
+      end
+    end
+    resources :tags
   end
 
-  resources :tags
+  # 【公開用】一般向け商品一覧・詳細ページ
+  resources :brands, only: [:index, :show]
+  resources :products, only: [:index, :show] 
+  resources :tags, only: [:index, :show]
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.

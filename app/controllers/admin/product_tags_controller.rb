@@ -1,4 +1,5 @@
-class ProductTagsController < ApplicationController
+class Admin::ProductTagsController < ApplicationController
+    include AdminAuthentication
     before_action :set_product
     before_action :set_product_tag, only: [:edit, :update, :destroy]
     
@@ -10,7 +11,7 @@ class ProductTagsController < ApplicationController
         @product_tag = @product.product_tags.new(product_tag_params)
         if @product_tag.save
             flash[:notice] = "タグを追加しました！"
-            redirect_to product_path(@product)
+            redirect_to admin_product_path(@product)
         else
             render :new, status: :unprocessable_entity
         end
@@ -22,7 +23,7 @@ class ProductTagsController < ApplicationController
     def update
         if @product_tag.update(product_tag_params)
             flash[:notice]= "タグを更新しました！"
-            redirect_to product_path(@product)
+            redirect_to admin_product_path(@product)
         else
             render :edit, status: :unprocessable_entity
         end
@@ -31,7 +32,7 @@ class ProductTagsController < ApplicationController
     def destroy
         @product_tag.destroy
         flash[:notice]= "タグを削除しました！"
-        redirect_to product_path(@product)
+        redirect_to admin_product_path(@product)
     end
     
     private
